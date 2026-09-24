@@ -52,7 +52,7 @@ resource "proxmox_virtual_environment_vm" "k8s_node" {
   }
 
   initialization {
-    user_data_file_id = proxmox_virtual_environment_file.cloud_init_user_data.id
+    vendor_data_file_id = proxmox_virtual_environment_file.cloud_init_user_data.id
 
     ip_config {
       ipv4 {
