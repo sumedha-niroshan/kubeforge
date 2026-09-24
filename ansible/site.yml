@@ -1,0 +1,20 @@
+---
+- name: Prepare all nodes (OS + container runtime + k8s packages)
+  hosts: k8s_cluster
+  become: true
+  roles:
+    - common
+    - containerd
+    - kubernetes
+
+- name: Initialize control plane
+  hosts: control_plane
+  become: true
+  roles:
+    - control-plane
+
+- name: Join worker nodes to the cluster
+  hosts: workers
+  become: true
+  roles:
+    - worker

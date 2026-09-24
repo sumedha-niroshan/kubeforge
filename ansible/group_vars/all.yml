@@ -1,0 +1,4 @@
+kubernetes_series: "1.31"          # kubernetes.io apt repo series
+pod_network_cidr: "10.244.0.0/16"  # matches the Calico manifest below
+calico_manifest_url: "https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml"
+containerd_version: "latest"

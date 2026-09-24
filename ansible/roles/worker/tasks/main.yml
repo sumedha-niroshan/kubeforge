@@ -1,0 +1,16 @@
+---
+- name: Check if this worker has already joined the cluster
+  stat:
+    path: /etc/kubernetes/kubelet.conf
+  register: kubelet_conf
+
+- name: Copy the join command from the Ansible control node
+  copy:
+    src: /tmp/kubeforge_join_command.sh
+    dest: /tmp/kubeforge_join_command.sh
+    mode: '0755'
+  when: not kubelet_conf.stat.exists
+
+- name: Run kubeadm join
+  command: sh /tmp/kubeforge_join_command.sh
+  when: not kubelet_conf.stat.exists
