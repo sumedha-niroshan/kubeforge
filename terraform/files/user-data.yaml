@@ -1,0 +1,12 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - qemu-guest-agent
+  - python3
+  - python3-apt
+  - curl
+  - net-tools
+runcmd:
+  - systemctl enable --now qemu-guest-agent
+  - timedatectl set-timezone Etc/UTC
